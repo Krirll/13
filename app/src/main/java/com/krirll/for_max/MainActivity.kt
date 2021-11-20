@@ -25,16 +25,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.tvmaze.com/") //добавляяем основной кусок нашей ссылки
+            .baseUrl("https://date.nager.at/") //добавляяем основной кусок нашей ссылки
             .addConverterFactory(GsonConverterFactory.create()) //дефолт, просто забей, это гугловский конвертер
             .build()
         val service = retrofit.create(ApiService::class.java)
-        val text = SimpleDateFormat("yyyy-MM-dd", Locale.ROOT).format(Date())
-        findViewById<TextView>(R.id.textView).text = text
+        val text = SimpleDateFormat("yyyy", Locale.ROOT).format(Date())
         val call = service.getSchedule(text)
-        call.enqueue(object : Callback<List<Schedule>> {
+        call.enqueue(object : Callback<List<Holiday>> {
             @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<List<Schedule>>, response: Response<List<Schedule>>) {
+            override fun onResponse(call: Call<List<Holiday>>, response: Response<List<Holiday>>) {
                 if (response.isSuccessful) {
                     adapter.setList(response.body()!!)
                     adapter.notifyDataSetChanged()
@@ -43,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity,"something went wrong, check your Internet connection", Toast.LENGTH_LONG).show()
             }
 
-            override fun onFailure(call: Call<List<Schedule>>, t: Throwable) {
+            override fun onFailure(call: Call<List<Holiday>>, t: Throwable) {
                 Toast.makeText(this@MainActivity,"something went wrong, check your Internet connection", Toast.LENGTH_LONG).show()
             }
 
