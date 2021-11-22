@@ -5,19 +5,16 @@ import com.google.gson.annotations.SerializedName
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
 
-class Holiday {
-
+class Holiday (
     @SerializedName("date") //такие штуки нужны, чтобы retrofit сам искал нужное поле
     @Expose //дефолтная строка для конвертации с помощью Gson, не обращай внимание
-    val date : String? = null
+    val date : String? = null,
 
     @SerializedName("localName")
     @Expose
     val name : String? = null
-
-}
+)
 
 
 

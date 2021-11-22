@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">For_max</string>
+    <string name="error">Произошла ошибка. Проверьте интернет-соединение</string>
 </resources>

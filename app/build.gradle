@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -46,4 +47,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //Gson
     implementation 'com.google.code.gson:gson:2.8.8'
+    //Room
+    def room_version = "2.3.0"
+    implementation("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
+    //Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.1")
 }
